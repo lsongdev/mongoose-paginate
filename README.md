@@ -1,10 +1,10 @@
-## mongoose-query-paginate
+## mongoose-paginate
 
-[Mongoose](https://github.com/LearnBoost/mongoose) Query paginate.
+[Mongoose](https://github.com/LearnBoost/mongoose) paginate.
 
 ## Installation
 
-    $ npm install mongoose-query-paginate
+    $ npm install mongoose-paginate
 
 ## Example
 
@@ -12,7 +12,7 @@
     var options = {
       perPage: 10,
       delta  : 3,
-      page   : req.query.p
+      page   : req.query.page
     };
     var query = MyModel.find({deleted: false}).sort('name', 1);
     query.paginate(options, function(err, res) {

@@ -1,5 +1,5 @@
 /**
- * mongoose-query-paginate
+ * mongoose-paginate
  */
 var Query = require('mongoose').Query;
 
@@ -12,21 +12,22 @@ Query.prototype.paginate = function(options, callback) {
   var defaults = {
     perPage: 10, // Number of items to display on each page.
     delta  :  5, // Number of page numbers to display before and after the current one.
-    page   :  1, // Initial page number.
-    offset :  0  // Offset number.
+    page   :  1  // Initial page number.
   };
 
-  options = options || defaults;
-  options.perPage = options.perPage || defaults.perPage;
-  options.delta = options.delta || defaults.delta;
-  options.page = options.page || defaults.page;
-  options.offset = options.offset || defaults.offset;
+  for(var key in options){
+    defaults[key] = options[key];
+  }
+
+  options = defaults;
+
+  var delta = options.delta;
+  var current = page = parseInt(options.page, 10) || 1;
 
   var query = this;
   var model = query.model;
   model.count(query._conditions, function(err, count) {
-    var _skip = (options.page - 1) * options.perPage;
-    _skip += options.offset;
+    var _skip = (current - 1) * options.perPage;
     query.skip(_skip).limit(options.perPage).exec(function(err, results) {
       if (err) {
         callback(err, {});
@@ -34,25 +35,19 @@ Query.prototype.paginate = function(options, callback) {
       }
 
       results = results || [];
-      var page = parseInt(options.page, 10) || 0;
-      var delta = options.delta;
-      var offset_count = count - options.offset;
-      offset_count = offset_count > 0 ? offset_count : 0;
-      var last = Math.ceil(offset_count / options.perPage);
-      var current = page;
-      var start = page - delta > 1 ? page - delta : 1;
-      var end = current + delta + 1 < last ? current + delta : last;
+
+      var last = Math.ceil(count / options.perPage);
+      
+      var start = Math.max(current - delta, 1);
+      var end   = Math.min(current + delta, last);
 
       var pages = [];
       for (var i = start; i <= end; i++) {
         pages.push(i);
       }
 
-      var prev = !count || current == start ? null : current - 1;
-      var next = !count || current == end ? null : current + 1;
-      if (!offset_count) {
-        prev = next = last = null;
-      }
+      var prev = Math.max(current - 1, start);
+      var next = Math.min(current + 1, end);
 
       var pager = {
         'results': results,

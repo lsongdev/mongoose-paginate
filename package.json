@@ -1,17 +1,27 @@
 {
-  "name": "mongoose-query-paginate",
-  "version": "1.0.1",
+  "name": "paginate-for-mongoose",
+  "version": "1.0.0",
+  "description": "[Mongoose](https://github.com/LearnBoost/mongoose) paginate.",
   "main": "index.js",
-  "author": "lowol",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/lowol/mongoose-query-paginate.git"
+    "url": "https://github.com/song940/mongoose-paginate.git"
   },
-  "keywords": ["mongoose", "paginate", "pager"],
+  "author": "lsong",
   "license": "MIT",
-  "description": "Mongoose Query paginate.",
-  "devDependencies": {
-    "mongoose": "*",
-    "mocha": "*"
-  }
+  "bugs": {
+    "url": "https://github.com/song940/mongoose-paginate/issues"
+  },
+  "homepage": "https://github.com/song940/mongoose-paginate",
+  "keywords": [
+    "mongoose",
+    "paginate",
+    "pager"
+  ]
 }
