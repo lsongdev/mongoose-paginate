@@ -23,5 +23,8 @@
     "mongoose",
     "paginate",
     "pager"
-  ]
+  ],
+  "dependencies": {
+    "mongoose": "^3.8.12"
+  }
 }
