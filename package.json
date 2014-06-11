@@ -1,7 +1,7 @@
 {
   "name": "paginate-for-mongoose",
   "version": "1.0.0",
-  "description": "[Mongoose](https://github.com/LearnBoost/mongoose) paginate.",
+  "description": "paginate for mongoose",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -25,6 +25,6 @@
     "pager"
   ],
   "dependencies": {
-    "mongoose": "^3.8.12"
+    "mongoose": "*"
   }
 }

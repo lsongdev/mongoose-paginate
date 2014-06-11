@@ -1,14 +1,16 @@
-## mongoose-paginate
+## Paginate for mongoose
 
 [Mongoose](https://github.com/LearnBoost/mongoose) paginate.
 
+[![NPM](https://nodei.co/npm/paginate-for-mongoose.png?downloads=true&stars=true)](https://nodei.co/npm/paginate-for-mongoose/)
+
 ## Installation
 
-    $ npm install mongoose-paginate
+    $ npm install paginate-for-mongoose
 
 ## Example
 
-    require('mongoose-query-paginate');
+    require('paginate-for-mongoose');
     var options = {
       perPage: 10,
       delta  : 3,

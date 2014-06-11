@@ -2,7 +2,7 @@
  * mongoose-paginate
  */
 var Query = require('mongoose').Query;
-
+var render = require('./libs/render');
 /**
  * paginate
  *
@@ -12,7 +12,8 @@ Query.prototype.paginate = function(options, callback) {
   var defaults = {
     perPage: 10, // Number of items to display on each page.
     delta  :  5, // Number of page numbers to display before and after the current one.
-    page   :  1  // Initial page number.
+    page   :  1,  // Initial page number.
+    params : {}
   };
 
   for(var key in options){
@@ -59,6 +60,9 @@ Query.prototype.paginate = function(options, callback) {
         'pages': pages,
         'count': count
       };
+
+      pager['render'] = render(options);
+
       callback(err, pager);
     });
   });
